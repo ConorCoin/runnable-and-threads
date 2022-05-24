@@ -1,0 +1,34 @@
+Runnable r = () -> System.out.println("Hello World!");
+Thread th = new Thread(r);
+th.start(); 
+
+is the same as
+
+
+Runnable r = new Runnable() {
+   @Override
+   public void run() {
+	System.out.println("Hello World!");
+   }
+};
+Thread th = new Thread(r);
+th.start(); 
+
+MOre Examples
+
+In case we need to write more than one line of code inside run() method, we can do using lambda expression as given below.
+
+Runnable r = () -> {
+	Consumer<Book> style = (Book b) -> System.out.println("Book Id:"+b.getId() + ", Book Name:"+b.getName());
+	list.forEach(style);
+}; 
+
+To pass the argument to our run() method we should use final modifier.
+
+
+final List<Book> list =  Arrays.asList(new Book(1, "Ramayan"), new Book(2, "Mahabharat"));
+
+Runnable r = () -> {
+	Consumer<Book> style = (Book b) -> System.out.println("Book Id:"+b.getId() + ", Book Name:"+b.getName());
+	list.forEach(style);
+}; 
